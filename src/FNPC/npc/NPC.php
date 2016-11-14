@@ -488,7 +488,7 @@ class NPC extends \pocketmine\level\Location
 			Entity::DATA_FLAGS=>[Entity::DATA_TYPE_BYTE,0],
 			Entity::DATA_AIR=>[Entity::DATA_TYPE_SHORT,300],
 			Entity::DATA_NAMETAG=>[Entity::DATA_TYPE_STRING,$this->nametag],
-			Entity::DATA_SHOW_NAMETAG=>[Entity::DATA_TYPE_BYTE,1],
+			Entity::DATA_FLAG_CAN_SHOW_NAMETAG=>[Entity::DATA_TYPE_BYTE,1],
 			Entity::DATA_SILENT=>[Entity::DATA_TYPE_BYTE,0],
 			Entity::DATA_NO_AI=>[Entity::DATA_TYPE_BYTE,1]);
 		if(\pocketmine\API_VERSION=='2.0.0')
