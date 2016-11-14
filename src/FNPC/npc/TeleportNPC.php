@@ -27,7 +27,7 @@ class TeleportNPC extends NPC
 	{
 		if($this->teleport===false)
 		{
-			$player->sendMessage('[System] '.TextFormat::RED.'该NPC未设置传送目标');
+			$player->sendMessage('[System] '.TextFormat::RED.'該NPC未設置傳送目標');
 		}
 		else if(isset($this->teleport['ip']))
 		{
@@ -40,19 +40,19 @@ class TeleportNPC extends NPC
 		{
 			if(($level=SystemProvider::$server->getLevelByName($this->teleport['level']))===false)
 			{
-				$player->sendMessage('[System] '.TextFormat::RED.'目标传送世界不存在');
+				$player->sendMessage('[System] '.TextFormat::RED.'目標傳送世界不存在');
 			}
 			else
 			{
 				$player->teleport(new Position($this->teleport['x'],$this->teleport['y'],$this->teleport['z'],$level));
-				$player->sendMessage('[System] '.TextFormat::GREEN.'传送成功');
+				$player->sendMessage('[System] '.TextFormat::GREEN.'傳送成功');
 			}
 			unset($level);
 		}
 		else
 		{
 			$player->teleport(new Vector3($this->teleport['x'],$this->teleport['y'],$this->teleport['z']));
-			$player->sendMessage('[System] '.TextFormat::GREEN.'传送成功');
+			$player->sendMessage('[System] '.TextFormat::GREEN.'傳送成功');
 		}
 		unset($player);
 	}
