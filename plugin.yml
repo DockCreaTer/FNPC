@@ -12,16 +12,16 @@ commands:
  fnpc:
   aliases: ["npc"]
   permission: FNPC.command.fnpc
-  description: "NPC系统指令"
-  usage: "使用 /fnpc help 查看帮助"
+  description: "NPC系統指令"
+  usage: "使用 /fnpc help 查看幫助"
 permissions:
  FNPC.*:
-  description: "根权限"
+  description: "根權限"
   default: op
  FNPC.command.*:
-  description: "使用命令权限"
+  description: "使用命令權限"
   default: op
  FNPC.command.fnpc:
-  description: "NPC命令使用权限"
+  description: "NPC命令使用權限"
   default: op
 
