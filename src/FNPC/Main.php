@@ -61,17 +61,17 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 		if(!self::$obj instanceof Main)
 		{
 			self::$obj=$this;
-			self::registerNpc('normal','普通NPC(无实际功能)',NPC::class,true);
-			self::registerNpc('reply','回复型NPC(使用/fnpc chat)',ReplyNPC::class,true);
+			self::registerNpc('normal','普通NPC(無實際功能)',NPC::class,true);
+			self::registerNpc('reply','回復型NPC(使用/fnpc chat)',ReplyNPC::class,true);
 			self::registerNpc('command','指令型NPC(使用/fnpc command)',CommandNPC::class,true);
-			self::registerNpc('teleport','传送型NPC(使用/fnpc teleport或/fnpc transfer)',TeleportNPC::class,true);
+			self::registerNpc('teleport','傳送型NPC(使用/fnpc teleport或/fnpc transfer)',TeleportNPC::class,true);
 		}
 		SystemProvider::init($this);
 		NPC::init();
 		
 		$this->initTasks();
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
-		$this->getLogger()->info(TextFormat::GREEN.'NPC数据加载完毕,耗时'.(microtime(true)-$start).'秒');
+		$this->getLogger()->info(TextFormat::GREEN.'NPC數據加載完畢,耗時'.(microtime(true)-$start).'秒');
 	}
 	
 	public function initTasks()
@@ -90,7 +90,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 		}
 		if(isset($args[1]) && is_numeric($args[1]))
 		{
-			$sender->sendMessage('[NPC] '.TextFormat::YELLOW.'纯数字ID会导致无法找到NPC，请使用英文/中文/混合ID');
+			$sender->sendMessage('[NPC] '.TextFormat::YELLOW.'純數字ID會導致無法找到NPC，請使用英文/中文/混合ID');
 		}
 		switch($args[0])
 		{
@@ -118,7 +118,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			$args[1]=strtolower($args[1]);
 			if(!isset(self::$registeredNPC[$args[1]]))
 			{
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'指定类型不存在 ,请使用 /fnpc type 查看可用类型');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'指定類型不存在 ,請使用 /fnpc type 查看可用類型');
 				break;
 			}
 			$npc=new self::$registeredNPC[$args[1]][0]($args[2],$args[3],$sender->x,$sender->y,$sender->z);
@@ -126,7 +126,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			$npc->spawnToAll();
 			$npc->save();
 			unset($npc);
-			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC创建成功');
+			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC創建成功');
 			break;
 		case 'transfer':
 			if(!isset($args[3]))
@@ -141,14 +141,14 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			}
 			if(!NPC::$pool[$args[1]] instanceof TeleportNPC)
 			{
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'该NPC不是传送型NPC');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'該NPC不是傳送型NPC');
 				break;
 			}
 			NPC::$pool[$args[1]]->setTeleport(array(
 				'ip'=>$args[2],
 				'port'=>$args[3]
 			));
-			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC传送点设置成功');
+			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC傳送點設置成功');
 			break;
 		case 'remove':
 			if(!isset($args[1]))
@@ -179,7 +179,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			if($npc instanceof TeleportNPC)
 			{
 				$npc->setTeleport(false);
-				$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC传送点移除成功');
+				$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC傳送點移除成功');
 			}
 			else if($npc instanceof CommandNPC)
 			{
@@ -201,11 +201,11 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			}
 			if(!NPC::$pool[$args[1]] instanceof TeleportNPC)
 			{
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'该NPC不是传送型NPC');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'該NPC不是傳送型NPC');
 				break;
 			}
 			NPC::$pool[$args[1]]->setTeleport($sender);
-			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC传送点设置成功');
+			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC傳送點設置成功');
 			break;
 		case 'command':
 			if(!isset($args[2]))
@@ -220,7 +220,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			}
 			if(!NPC::$pool[$args[1]] instanceof CommandNPC)
 			{
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'该NPC不是指令型NPC');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'該NPC不是指令型NPC');
 				break;
 			}
 			switch($args[2])
@@ -266,7 +266,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 				}
 				else
 				{
-					$sender->sendMessage('[NPC] '.TextFormat::RED.'NPC未添加该指令');
+					$sender->sendMessage('[NPC] '.TextFormat::RED.'NPC未添加該指令');
 				}
 				break;
 			case 'list':
@@ -297,7 +297,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			}
 			if(!NPC::$pool[$args[1]] instanceof ReplyNPC)
 			{
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'该NPC不是回复型NPC');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'該NPC不是回復型NPC');
 				break;
 			}
 			switch($args[2])
@@ -319,7 +319,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 				}
 				unset($i);
 				NPC::$pool[$args[1]]->addChat($cmd);
-				$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC对话数据添加成功');
+				$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC對話數據添加成功');
 				break;
 			case 'remove':
 				if(!isset($args[3]))
@@ -339,11 +339,11 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 				unset($i);
 				if(NPC::$pool[$args[1]]->removeChat($cmd))
 				{
-					$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC对话数据移除成功');
+					$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NPC對話數據移除成功');
 				}
 				else
 				{
-					$sender->sendMessage('[NPC] '.TextFormat::RED.'NPC未添加该对话数据');
+					$sender->sendMessage('[NPC] '.TextFormat::RED.'NPC未添加該對話數據');
 				}
 				break;
 			default:
@@ -363,7 +363,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 				break;
 			}
 			NPC::$pool[$args[1]]->setName($args[2]);
-			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NameTag设置成功');
+			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'NameTag設置成功');
 			break;
 		case 'skin':
 			if(!isset($args[2]))
@@ -379,17 +379,17 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			switch(NPC::$pool[$args[1]]->setPNGSkin($args[2],false))
 			{
 			case 0:
-				$sender->sendMessage('[NPC] '.TextFormat::GREEN.'皮肤更换成功');
+				$sender->sendMessage('[NPC] '.TextFormat::GREEN.'皮膚更換成功');
 				break;
 			case -1:
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'皮肤文件不存在,请检查输入的路径是否正确,需要加.png');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'皮膚文件不存在,請檢查輸入的路徑是否正確,需要加.png');
 				break;
 			case -2:
 				$sender->sendMessage('[NPC] '.TextFormat::RED.'皮肤文件无效,请使用MCPE可以正常加载的png皮肤');
 				break;
 			case -3:
 			default:
-				$sender->sendMessage('[NPC] '.TextFormat::RED.'未知错误,请检查皮肤路径是否正确以及是否可以在MCPE正常使用');
+				$sender->sendMessage('[NPC] '.TextFormat::RED.'未知錯誤,請檢查皮膚路徑是否正確以及是否可以在MCPE正常使用');
 				break;
 			}
 			break;
@@ -412,7 +412,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			$item[0]=intval($item[0]);
 			$item[1]=intval($item[1]);
 			NPC::$pool[$args[1]]->setHandItem(\pocketmine\item\Item::get($item[0],$item[1]));
-			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'手持物品更换成功');
+			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'手持物品更換成功');
 			break;
 		case 'tphere':
 		case 'teleporthere':
@@ -427,25 +427,25 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 				break;
 			}
 			NPC::$pool[$args[1]]->teleport($sender);
-			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'传送成功');
+			$sender->sendMessage('[NPC] '.TextFormat::GREEN.'傳送成功');
 			break;
 		case 'help':
-			$help=TextFormat::GREEN.'===NPC系统指令帮助==='."\n";
-			$help.=TextFormat::GREEN.'所有指令前面必须加/fnpc '."\n";
-			$help.=TextFormat::YELLOW.'add <Type> <ID> <Name> - 添加一个NPC'."\n";
-			$help.=TextFormat::YELLOW.'type - 列出可用的Type类型'."\n";
-			$help.=TextFormat::YELLOW.'remove <ID> - 移除一个NPC'."\n";
-			$help.=TextFormat::YELLOW.'skin <ID> <File> - 设置NPC皮肤'."\n";
-			$help.=TextFormat::YELLOW.'name <ID> <Name> - 设置NPC名称'."\n";
-			$help.=TextFormat::YELLOW.'command <ID> <add/remove> <Command> - 添加/删除NPC指令'."\n";
+			$help=TextFormat::GREEN.'===NPC系統指令幫助==='."\n";
+			$help.=TextFormat::GREEN.'所有指令前面必須加/fnpc '."\n";
+			$help.=TextFormat::YELLOW.'add <Type> <ID> <Name> - 添加一個NPC'."\n";
+			$help.=TextFormat::YELLOW.'type - 列出可用的Type類型'."\n";
+			$help.=TextFormat::YELLOW.'remove <ID> - 移除一個NPC'."\n";
+			$help.=TextFormat::YELLOW.'skin <ID> <File> - 設置NPC皮膚'."\n";
+			$help.=TextFormat::YELLOW.'name <ID> <Name> - 設置NPC名稱'."\n";
+			$help.=TextFormat::YELLOW.'command <ID> <add/remove> <Command> - 添加/刪除NPC指令'."\n";
 			$help.=TextFormat::YELLOW.'command <ID> list - 列出NPC指令'."\n";
-			$help.=TextFormat::YELLOW.'tphere <ID> - 把NPC传送过来'."\n";
-			$help.=TextFormat::YELLOW.'teleport <ID> - 设置NPC传送目标为你的位置'."\n";
-			$help.=TextFormat::YELLOW.'transfer <ID> <IP> <Port> - 设置NPC跨服传送'."\n";
-			$help.=TextFormat::YELLOW.'reset <ID> - 重置NPC的设置'."\n";
-			$help.=TextFormat::YELLOW.'chat <ID> <add/remove> <Chat> - 添加/删除NPC对话数据'."\n";
-			$help.=TextFormat::YELLOW.'item <ID> <Item[:Damage]> - 设置NPC手持物品'."\n";
-			$help.=TextFormat::YELLOW.'help - 查看帮助';
+			$help.=TextFormat::YELLOW.'tphere <ID> - 把NPC傳送過來'."\n";
+			$help.=TextFormat::YELLOW.'teleport <ID> - 設置NPC傳送目標為你的位置'."\n";
+			$help.=TextFormat::YELLOW.'transfer <ID> <IP> <Port> - 設置NPC跨服傳送'."\n";
+			$help.=TextFormat::YELLOW.'reset <ID> - 重置NPC的設置'."\n";
+			$help.=TextFormat::YELLOW.'chat <ID> <add/remove> <Chat> - 添加/刪除NPC對話數據'."\n";
+			$help.=TextFormat::YELLOW.'item <ID> <Item[:Damage]> - 設置NPC手持物品'."\n";
+			$help.=TextFormat::YELLOW.'help - 查看幫助';
 			$sender->sendMessage($help);
 			unset($help);
 			break;
