@@ -159,7 +159,7 @@ class NPC extends \pocketmine\level\Location
 		$this->handItem=$handItem;
 		if(isset(NPC::$pool[$this->nid]))
 		{
-			SystemProvider::$plugin->getLogger()->warning('警告:尝试创建ID重复NPC:'.$this->nid.',请检查是否出现逻辑错误');
+			SystemProvider::$plugin->getLogger()->warning('警告:嘗試創建ID重復NPC:'.$this->nid.',請檢查是否出現邏輯錯誤');
 			NPC::$pool[$this->nid]->close();
 		}
 		NPC::$pool[$this->nid]=$this;
@@ -279,7 +279,7 @@ class NPC extends \pocketmine\level\Location
 			{
 				if($realPlayer instanceof Player)
 				{
-					$realPlayer->sendMessage('[System] '.TextFormat::GREEN.'您花费了 '.$this->pay.' '.Economy::$moneyName);
+					$realPlayer->sendMessage('[System] '.TextFormat::GREEN.'您花費了 '.$this->pay.' '.Economy::$moneyName);
 				}
 				return Economy::takeMoney($player,$this->pay);
 			}
@@ -288,7 +288,7 @@ class NPC extends \pocketmine\level\Location
 		}
 		if($realPlayer instanceof Player)
 		{
-			$realPlayer->sendMessage('[System] '.TextFormat::RED.'抱歉 ,您没有足够的'.Economy::$moneyName.'来使用NPC');
+			$realPlayer->sendMessage('[System] '.TextFormat::RED.'抱歉 ,您沒有足夠的'.Economy::$moneyName.'來使用NPC');
 		}
 		unset($player,$pay,$realPlayer);
 		return false;
