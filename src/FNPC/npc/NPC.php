@@ -486,7 +486,7 @@ class NPC extends \pocketmine\level\Location
 		$pk->item=$this->handItem;
 		$pk->metadata=array(
 			Entity::DATA_FLAGS=>[Entity::DATA_TYPE_BYTE,0],
-			Entity::DATA_AIR=>[Entity::DATA_TYPE_SHORT,400],
+			Entity::DATA_AIR=>[Entity::DATA_TYPE_SHORT,300],
 			Entity::DATA_NAMETAG=>[Entity::DATA_TYPE_STRING,$this->nametag],
 			Entity::DATA_FLAG_CAN_SHOW_NAMETAG=>[Entity::DATA_TYPE_BYTE,1],
 		if(\pocketmine\API_VERSION=='2.0.0')
