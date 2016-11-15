@@ -489,12 +489,9 @@ class NPC extends \pocketmine\level\Location
 			Entity::DATA_AIR=>[Entity::DATA_TYPE_SHORT,400],
 			Entity::DATA_NAMETAG=>[Entity::DATA_TYPE_STRING,$this->nametag],
 			Entity::DATA_FLAG_CAN_SHOW_NAMETAG=>[Entity::DATA_TYPE_BYTE,1],
-			Entity::DATA_SILENT=>[Entity::DATA_TYPE_BYTE,0],
-			Entity::DATA_NO_AI=>[Entity::DATA_TYPE_BYTE,1]);
 		if(\pocketmine\API_VERSION=='2.0.0')
 		{
 			$pk->metadata[Entity::DATA_LEAD_HOLDER]=[Entity::DATA_TYPE_LONG,-1];
-			$pk->metadata[Entity::DATA_LEAD]=[Entity::DATA_TYPE_BYTE,0];
 			$pk1=new \pocketmine\network\protocol\SetEntityLinkPacket();
 			$pk1->from=$this->getId();
 			$pk1->to=0;
